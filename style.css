@@ -1,0 +1,118 @@
+/* Carregamento das Fontes Locais */
+@font-face {
+  font-family: 'Feather Bold';
+  src: url('fonts/Feather-Bold.woff2') format('woff2'),
+       url('fonts/Feather-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('fonts/Nunito-Regular.woff2') format('woff2'),
+       url('fonts/Nunito-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Configuração Geral */
+:root {
+  /* Sua Paleta */
+  --rosa: #F2A7AD;
+  --laranja-escuro: #EF7211;
+  --azul-claro: #C2EDF2;
+  --amarelo: #F2A444;
+  --laranja-salmao: #F2B28D;
+  --vermelho: #D93636;
+  
+  /* Cores Complementares */
+  --bg-offwhite: #F7F9FA;
+  --text-color: #4B4B4B;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-offwhite);
+  font-family: 'Nunito', sans-serif;
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Container Principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Logo */
+.logo-container {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.logo {
+  max-width: 220px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Botões */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+}
+
+.btn {
+  font-family: 'Feather Bold', 'Nunito', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.8px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 16px;
+  border-radius: 16px;
+  color: #FFFFFF;
+  display: block;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  user-select: none;
+}
+
+/* Estilo Duolingo: Botão Aulas (Laranja/Amarelo) */
+.btn-aulas {
+  background-color: var(--laranja-escuro);
+  box-shadow: 0 5px 0 #C95C08; /* Efeito 3D */
+}
+
+/* Estilo Duolingo: Botão Galolingo (Vermelho/Rosa) */
+.btn-galolingo {
+  background-color: var(--vermelho);
+  box-shadow: 0 5px 0 #B02626;
+}
+
+/* Estilo Duolingo: Botão Músicas (Azul) */
+.btn-musicas {
+  background-color: #2B70C9; /* Azul vibrante em harmonia com a paleta */
+  box-shadow: 0 5px 0 #1D4F91;
+}
+
+/* Efeito de Clique (Pressing down) */
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 transparent;
+}
