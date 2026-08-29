@@ -9,10 +9,12 @@
 <body>
 
   <main class="container">
+    <!-- Logo centralizada -->
     <header class="logo-container">
       <img src="LOGO.png" alt="Logo Galolingo" class="logo">
     </header>
 
+    <!-- Botões estilo Duolingo -->
     <nav class="buttons-container">
       <a href="https://drive.google.com/drive/folders/1Qo3BDvp7MVxlXBuUg7UnEbANh32WllXM?usp=drive_link" target="_blank" class="btn btn-aulas">
         AULAS
@@ -27,6 +29,23 @@
       </a>
     </nav>
   </main>
+
+  <!-- Elemento de Áudio -->
+  <audio id="audio-click" src="click.mp3" preload="auto"></audio>
+
+  <!-- Script para reproduzir o som ao clicar -->
+  <script>
+    const clickSound = document.getElementById('audio-click');
+    const buttons = document.querySelectorAll('.btn');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        // Reinicia o áudio caso o usuário clique rápido várias vezes
+        clickSound.currentTime = 0;
+        clickSound.play();
+      });
+    });
+  </script>
 
 </body>
 </html>
