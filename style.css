@@ -15,17 +15,14 @@
   font-style: normal;
 }
 
-/* Configuração Geral */
+/* Configuração Geral e Paleta */
 :root {
-  /* Sua Paleta */
   --rosa: #F2A7AD;
   --laranja-escuro: #EF7211;
   --azul-claro: #C2EDF2;
   --amarelo: #F2A444;
   --laranja-salmao: #F2B28D;
   --vermelho: #D93636;
-  
-  /* Cores Complementares */
   --bg-offwhite: #F7F9FA;
   --text-color: #4B4B4B;
 }
@@ -44,75 +41,95 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 24px 16px;
 }
 
-/* Container Principal */
+/* Layout Responsivo (Mobile First) */
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px; /* Largura padrão ideal para telas móveis e alinhada */
 }
 
-/* Logo */
+/* Logo Ajustável */
 .logo-container {
-  margin-bottom: 40px;
+  margin-bottom: 32px;
   text-align: center;
+  width: 100%;
 }
 
 .logo {
-  max-width: 220px;
+  width: 70%;
+  max-width: 240px;
+  min-width: 160px;
   height: auto;
   display: block;
   margin: 0 auto;
 }
 
-/* Botões */
+/* Container de Botões */
 .buttons-container {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   width: 100%;
 }
 
+/* Estilo Base dos Botões (Texto Grande, Branco, Negrito e Minúsculo) */
 .btn {
   font-family: 'Feather Bold', 'Nunito', sans-serif;
-  font-size: 1.2rem;
-  letter-spacing: 0.8px;
+  font-size: 1.5rem; /* Tamanho maior para destaque */
+  font-weight: bold;
+  color: #FFFFFF; /* Texto branco */
+  text-transform: lowercase; /* Força todas as letras em minúsculas */
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
-  padding: 16px;
-  border-radius: 16px;
-  color: #FFFFFF;
+  padding: 18px 20px;
+  border-radius: 18px;
   display: block;
   cursor: pointer;
-  transition: all 0.1s ease;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
   user-select: none;
+  width: 100%;
 }
 
-/* Estilo Duolingo: Botão Aulas (Laranja/Amarelo) */
+/* Cores dos Botões com Efeito 3D Duolingo */
 .btn-aulas {
   background-color: var(--laranja-escuro);
-  box-shadow: 0 5px 0 #C95C08; /* Efeito 3D */
+  box-shadow: 0 6px 0 #C95C08;
 }
 
-/* Estilo Duolingo: Botão Galolingo (Vermelho/Rosa) */
 .btn-galolingo {
   background-color: var(--vermelho);
-  box-shadow: 0 5px 0 #B02626;
+  box-shadow: 0 6px 0 #B02626;
 }
 
-/* Estilo Duolingo: Botão Músicas (Azul) */
 .btn-musicas {
-  background-color: #2B70C9; /* Azul vibrante em harmonia com a paleta */
-  box-shadow: 0 5px 0 #1D4F91;
+  background-color: #2B70C9;
+  box-shadow: 0 6px 0 #1D4F91;
 }
 
-/* Efeito de Clique (Pressing down) */
+/* Efeito de Pressão ao Clicar/Tocar */
 .btn:active {
   transform: translateY(4px);
-  box-shadow: 0 1px 0 transparent;
+  box-shadow: 0 2px 0 transparent;
+}
+
+/* Responsividade: Tablet / Telas Maiores */
+@media (min-width: 768px) {
+  .container {
+    max-width: 480px;
+  }
+
+  .logo {
+    max-width: 280px;
+  }
+
+  .btn {
+    font-size: 1.75rem; /* Aumenta levemente o texto no tablet/desktop */
+    padding: 20px 24px;
+    border-radius: 20px;
+  }
 }
