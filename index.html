@@ -6,364 +6,76 @@
   <title>galolingo</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4ff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0;
-      padding: 20px;
-    }
-
-    .container {
-      background: white;
-      border-radius: 40px;
-      padding: 50px 40px 40px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
-      text-align: center;
-    }
-
-    .logo-container {
-      margin-bottom: 40px;
-    }
-
-    .logo {
-      max-width: 100%;
-      height: auto;
-      max-height: 120px;
-    }
-
-    .buttons-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 18px 20px;
-      font-size: 1.3rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-radius: 60px;
-      text-decoration: none;
-      color: white;
-      transition: all 0.15s ease;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 6px 0 rgba(0,0,0,0.15);
-    }
-
-    .btn:active {
-      transform: translateY(4px);
-      box-shadow: 0 2px 0 rgba(0,0,0,0.15);
-    }
-
-    .btn-aulas {
-      background: #6C63FF;
-    }
-    .btn-aulas:hover {
-      background: #5a52e0;
-    }
-
-    .btn-galolingo {
-      background: #FF8A5C;
-    }
-    .btn-galolingo:hover {
-      background: #e0754a;
-    }
-
-    .btn-musicas {
-      background: #4CB8C4;
-    }
-    .btn-musicas:hover {
-      background: #3aa3af;
-    }
-
-    /* botões da página galolingo (interna) */
-    .btn-mon-ecole {
-      background: #FF6B8A;
-    }
-    .btn-mon-ecole:hover {
-      background: #e05577;
-    }
-
-    .btn-les-legumes {
-      background: #5BC88A;
-    }
-    .btn-les-legumes:hover {
-      background: #46b377;
-    }
-
-    .btn-voltar {
-      background: #b0b8c5;
-      margin-top: 16px;
-    }
-    .btn-voltar:hover {
-      background: #9da6b5;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-      color: #444;
-      margin-bottom: 24px;
-      font-weight: 500;
-    }
-
-    .page {
-      display: block;
-    }
-
-    .page.hidden {
-      display: none;
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        padding: 30px 20px 30px;
-      }
-      .btn {
-        font-size: 1.0rem;
-        padding: 15px 16px;
-      }
+    /* Esconde a sub-página por padrão */
+    .hidden {
+      display: none !important;
     }
   </style>
 </head>
 <body>
 
-  <div class="container" id="app">
+  <main class="container">
+    <header class="logo-container">
+      <img src="LOGO.png" alt="Logo Galolingo" class="logo">
+    </header>
 
-    <!-- PÁGINA PRINCIPAL -->
-    <div id="page-main" class="page">
-      <header class="logo-container">
-        <img src="LOGO.png" alt="Logo Galolingo" class="logo">
-      </header>
+    <nav id="main-menu" class="buttons-container">
+      <a href="https://drive.google.com/drive/folders/1Qo3BDvp7MVxlXBuUg7UnEbANh32WllXM?usp=drive_link" target="_blank" class="btn btn-aulas">
+        aulas
+      </a>
+      
+      <button type="button" id="btn-galolingo-trigger" class="btn btn-galolingo">
+        galolingo
+      </button>
+      
+      <a href="https://drive.google.com/drive/folders/1N5VtsKNa34d1w-plWL4827EBfFuLxlfV?usp=drive_link" target="_blank" class="btn btn-musicas">
+        músicas
+      </a>
+    </nav>
 
-      <nav class="buttons-container">
-        <a href="https://drive.google.com/drive/folders/1Qo3BDvp7MVxlXBuUg7UnEbANh32WllXM?usp=drive_link" target="_blank" class="btn btn-aulas">
-          aulas
-        </a>
-        
-        <button id="btn-abrir-galolingo" class="btn btn-galolingo">
-          galolingo
-        </button>
-        
-        <a href="https://drive.google.com/drive/folders/1N5VtsKNa34d1w-plWL4827EBfFuLxlfV?usp=drive_link" target="_blank" class="btn btn-musicas">
-          músicas
-        </a>
-      </nav>
-    </div>
+    <nav id="galolingo-menu" class="buttons-container hidden">
+      <a href="https://francaisavecdamiao.github.io/GALO_MON_ECOLE/" target="_blank" class="btn btn-ecole">
+        mon école
+      </a>
 
-    <!-- PÁGINA GALOLINGO (interna) -->
-    <div id="page-galolingo" class="page hidden">
-      <header class="logo-container">
-        <img src="LOGO.png" alt="Logo Galolingo" class="logo" style="max-height:80px;">
-      </header>
+      <a href="https://francaisavecdamiao.github.io/LES_LEGUMES/" target="_blank" class="btn btn-legumes">
+        les légumes
+      </a>
 
-      <p class="subtitle">escolha um tema</p>
-
-      <nav class="buttons-container">
-        <a href="https://francaisavecdamiao.github.io/GALO_MON_ECOLE/" target="_blank" class="btn btn-mon-ecole">
-          mon école
-        </a>
-        
-        <a href="https://francaisavecdamiao.github.io/LES_LEGUMES/" target="_blank" class="btn btn-les-legumes">
-          les légumes
-        </a>
-
-        <button id="btn-voltar" class="btn btn-voltar">
-          ⬅ voltar
-        </button>
-      </nav>
-    </div>
-
-  </div>
+      <button type="button" id="btn-voltar" class="btn btn-voltar">
+        voltar
+      </button>
+    </nav>
+  </main>
 
   <audio id="audio-click" src="click.mp3" preload="auto"></audio>
 
   <script>
     const clickSound = document.getElementById('audio-click');
-
-    // elementos das páginas
-    const pageMain = document.getElementById('page-main');
-    const pageGalolingo = document.getElementById('page-galolingo');
-
-    const btnAbrirGalolingo = document.getElementById('btn-abrir-galolingo');
+    const mainMenu = document.getElementById('main-menu');
+    const galolingoMenu = document.getElementById('galolingo-menu');
+    const galolingoTrigger = document.getElementById('btn-galolingo-trigger');
     const btnVoltar = document.getElementById('btn-voltar');
 
-    // funções para trocar página
-    function showPage(pageToShow) {
-      pageMain.classList.add('hidden');
-      pageGalolingo.classList.add('hidden');
-      pageToShow.classList.remove('hidden');
-    }
-
-    // evento para abrir galolingo
-    btnAbrirGalolingo.addEventListener('click', () => {
-      // toca som
-      clickSound.currentTime = 0;
-      clickSound.play();
-
-      showPage(pageGalolingo);
-    });
-
-    // evento para voltar
-    btnVoltar.addEventListener('click', () => {
-      clickSound.currentTime = 0;
-      clickSound.play();
-
-      showPage(pageMain);
-    });
-
-    // todos os botões que são <a> também disparam som (já tem o event listener geral)
-    // mas adicionamos também para os botões que são <button> (já incluídos acima)
-    // para os links <a>, manter o clique com som (já aplicado abaixo)
-    const allClickable = document.querySelectorAll('.btn, a.btn, button.btn');
-    allClickable.forEach(el => {
-      el.addEventListener('click', () => {
-        // se for um link com href, não impede o navegador
-        // apenas toca o som (já que o som é rápido)
+    // Toca o áudio em qualquer elemento com a classe .btn
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', () => {
         clickSound.currentTime = 0;
         clickSound.play();
       });
     });
 
-    // para evitar duplicidade com os botões que já têm evento específico,
-    // mas não há problema, pois o som será acionado duas vezes? 
-    // Vamos melhorar: vamos remover os listeners específicos e usar 
-    // apenas um listener geral com tratamento de página.
-    // Mas como já temos os específicos, vamos mantê-los e usar 
-    // uma abordagem mais limpa: sobrescrever.
-
-    // (Otimização) Remover os listeners antigos e usar um único sistema
-    // Vamos refatorar para evitar duplicidade de som.
-
-    // Remove listeners antigos (se houver conflito)
-    // Mas como o código é pequeno, vamos refazer a lógica de som:
-
-    // Novo sistema: só toca som no clique, sem duplicar.
-    // Remove todos os listeners anteriores (se existirem)
-    // Vamos clonar e substituir? Mais fácil: limpar e recriar.
-
-    // Vamos usar um único listener no container via delegação
-    // Mas como o HTML já tem os eventos, vamos substituir.
-
-    // Solução: remover todos os listeners de clique dos botões e usar um único.
-    // Para simplificar, vou reatribuir.
-
-    // Pegamos todos os elementos que podem ser clicados e que têm a classe .btn
-    document.querySelectorAll('.btn').forEach(el => {
-      // remove todos os listeners (não é 100% garantido, mas vamos sobrescrever)
-      // Na prática, vamos substituir por um novo listener.
-      // A maneira mais fácil: clonar o elemento? 
-      // Vamos apenas adicionar um novo listener que não conflita.
-      // Como não temos referência aos listeners antigos, vamos manter e 
-      // usar um controle de "já tocou" para não tocar duas vezes.
+    // Transição para a nova tela ao clicar em galolingo
+    galolingoTrigger.addEventListener('click', () => {
+      mainMenu.classList.add('hidden');
+      galolingoMenu.classList.remove('hidden');
     });
 
-    // A melhor solução: remover os listeners antigos através de substituição.
-    // Vou refazer a lógica de som com um único ponto de escuta.
-
-    // (REFAZENDO A LÓGICA DE SOM)
-    // Remove todos os listeners de clique que foram adicionados anteriormente
-    // (isso é feito substituindo os elementos por clones)
-    // Mas para não quebrar os hrefs, faremos de forma mais simples:
-
-    // Vamos desativar os listeners antigos e usar um único listener no documento.
-    // Para isso, usamos um flag para não repetir.
-
-    let somTocado = false;
-
-    document.addEventListener('click', function(e) {
-      const target = e.target.closest('.btn');
-      if (!target) return;
-
-      // toca o som uma única vez por clique
-      if (!somTocado) {
-        somTocado = true;
-        clickSound.currentTime = 0;
-        clickSound.play().catch(() => {});
-        setTimeout(() => { somTocado = false; }, 100);
-      }
+    // Retorna ao menu principal
+    btnVoltar.addEventListener('click', () => {
+      galolingoMenu.classList.add('hidden');
+      mainMenu.classList.remove('hidden');
     });
-
-    // Agora, os listeners específicos de navegação ainda vão funcionar,
-    // mas o som será acionado uma única vez.
-
-    // (OBS: os listeners de clique nos botões específicos ainda existem,
-    // mas o som agora é controlado pelo listener global)
-
-    // Para evitar que o som toque duas vezes, removemos os listeners antigos
-    // ou simplesmente ignoramos. Como o listener global já toca, 
-    // vamos remover os listeners antigos que adicionam som.
-
-    // Para isso, substituímos os botões que têm listener de som por novos clones.
-    // Mas isso é complexo. Vamos fazer mais simples: remover o atributo onclick
-    // e remover os listeners via removeEventListener? Não temos referência.
-
-    // Solução prática: usar um novo clique com preventDefault? 
-    // Melhor: remover os listeners antigos sobrescrevendo.
-
-    // Vou refazer o código para que o som seja controlado apenas pelo listener global,
-    // e os botões tenham apenas a ação de navegação.
-
-    // Para isso, removo os listeners antigos usando cloneNode.
-    // Mas como os botões têm hrefs e actions, vou recriar a lógica de clique
-    // sem os listeners de som.
-
-    // Vou usar um approach mais simples: não adicionar listeners de som nos botões,
-    // apenas usar o listener global.
-
-    // Portanto, removo os listeners de clique que foram adicionados anteriormente
-    // (os que chamam showPage e play sound)
-
-    // Como o código está em execução, vou sobrescrever os eventos:
-
-    // Remover todos os listeners de clique dos botões específicos:
-    // Para isso, clonamos e substituímos.
-
-    function replaceButtonWithClone(button) {
-      const newButton = button.cloneNode(true);
-      button.parentNode.replaceChild(newButton, button);
-      return newButton;
-    }
-
-    // Substituir os botões que têm listeners específicos (btn-abrir-galolingo e btn-voltar)
-    const oldBtnAbrir = document.getElementById('btn-abrir-galolingo');
-    const oldBtnVoltar = document.getElementById('btn-voltar');
-
-    if (oldBtnAbrir) {
-      const newBtnAbrir = replaceButtonWithClone(oldBtnAbrir);
-      newBtnAbrir.addEventListener('click', function(e) {
-        showPage(pageGalolingo);
-      });
-    }
-
-    if (oldBtnVoltar) {
-      const newBtnVoltar = replaceButtonWithClone(oldBtnVoltar);
-      newBtnVoltar.addEventListener('click', function(e) {
-        showPage(pageMain);
-      });
-    }
-
-    // Agora o som é controlado apenas pelo listener global.
-    // E os links <a> com href continuam funcionando normalmente.
-
-    // Pequeno ajuste: garantir que o listener global não toque som duas vezes
-    // (já tem o flag somTocado)
-
-    console.log('Código refeito com sucesso!');
   </script>
 
 </body>
