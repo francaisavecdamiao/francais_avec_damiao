@@ -10,6 +10,33 @@
     .hidden {
       display: none !important;
     }
+
+    /* Estilo padrão para os botões do sub-menu Galolingo */
+    #galolingo-menu .btn {
+      background-color: #2F73A2;
+      color: #ffffff;
+      text-decoration: none;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    /* Animação/dinâmica para TODOS os botões ao passar o mouse por cima (hover) */
+    .btn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.03); /* Eleva o botão levemente e aumenta o tamanho */
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);  /* Sombra dinâmica */
+    }
+
+    .btn:active {
+      transform: translateY(-1px) scale(0.98); /* Efeito de clique */
+    }
   </style>
 </head>
 <body>
@@ -34,7 +61,7 @@
       </a>
     </nav>
 
-    <!-- Sub-menu Galolingo -->
+    <!-- Sub-menu Galolingo com cor #2F73A2 e texto em branco -->
     <nav id="galolingo-menu" class="buttons-container hidden">
       <a href="https://francaisavecdamiao.github.io/GALO_MON_ECOLE/" target="_blank" class="btn btn-ecole">
         mon école
