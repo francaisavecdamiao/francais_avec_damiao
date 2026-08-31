@@ -16,9 +16,10 @@
 
   <main class="container">
     <header class="logo-container">
-      <img src="LOGO.png" alt="Logo Galolingo" class="logo">
+      <img src="logo_fad.png" alt="Logo Galolingo" class="logo">
     </header>
 
+    <!-- Menu Principal -->
     <nav id="main-menu" class="buttons-container">
       <a href="https://drive.google.com/drive/folders/1Qo3BDvp7MVxlXBuUg7UnEbANh32WllXM?usp=drive_link" target="_blank" class="btn btn-aulas">
         aulas
@@ -33,18 +34,19 @@
       </a>
     </nav>
 
+    <!-- Sub-menu Galolingo -->
     <nav id="galolingo-menu" class="buttons-container hidden">
       <a href="https://francaisavecdamiao.github.io/GALO_MON_ECOLE/" target="_blank" class="btn btn-ecole">
         mon école
       </a>
 
+      <a href="https://francaisavecdamiao.github.io/LES_VACANCES/" target="_blank" class="btn btn-vacances">
+        les vacances
+      </a>
+
       <a href="https://francaisavecdamiao.github.io/LES_LEGUMES/" target="_blank" class="btn btn-legumes">
         les légumes
       </a>
-
-      <button type="button" id="btn-voltar" class="btn btn-voltar">
-        voltar
-      </button>
     </nav>
   </main>
 
@@ -55,7 +57,6 @@
     const mainMenu = document.getElementById('main-menu');
     const galolingoMenu = document.getElementById('galolingo-menu');
     const galolingoTrigger = document.getElementById('btn-galolingo-trigger');
-    const btnVoltar = document.getElementById('btn-voltar');
 
     // Toca o áudio em qualquer elemento com a classe .btn
     document.querySelectorAll('.btn').forEach(button => {
@@ -65,16 +66,10 @@
       });
     });
 
-    // Transição para a nova tela ao clicar em galolingo
+    // Transição para a tela com os 3 botões ao clicar em galolingo
     galolingoTrigger.addEventListener('click', () => {
       mainMenu.classList.add('hidden');
       galolingoMenu.classList.remove('hidden');
-    });
-
-    // Retorna ao menu principal
-    btnVoltar.addEventListener('click', () => {
-      galolingoMenu.classList.add('hidden');
-      mainMenu.classList.remove('hidden');
     });
   </script>
 
