@@ -6,36 +6,39 @@
   <title>galolingo</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Esconde a sub-página por padrão */
+    /* Esconde elementos */
     .hidden {
       display: none !important;
     }
 
-    /* Estilo padrão para os botões do sub-menu Galolingo */
-    #galolingo-menu .btn {
-      background-color: #2F73A2;
-      color: #ffffff;
-      text-decoration: none;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* Animação/dinâmica base para todos os botões */
+    .btn {
       transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
       cursor: pointer;
     }
 
-    /* Animação/dinâmica para TODOS os botões ao passar o mouse por cima (hover) */
-    .btn {
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
     .btn:hover {
-      transform: translateY(-5px) scale(1.03); /* Eleva o botão levemente e aumenta o tamanho */
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);  /* Sombra dinâmica */
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
     .btn:active {
-      transform: translateY(-1px) scale(0.98); /* Efeito de clique */
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    /* Estilo e cor personalizada para os botões do submenu Galolingo */
+    #galolingo-menu .btn {
+      background-color: #2F73A2;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* Estilo do botão de voltar */
+    .btn-voltar {
+      background-color: #6c757d;
+      color: #ffffff;
+      text-decoration: none;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -46,22 +49,20 @@
       <img src="logo_fad.png" alt="Logo Galolingo" class="logo">
     </header>
 
-    <!-- Menu Principal -->
     <nav id="main-menu" class="buttons-container">
       <a href="https://drive.google.com/drive/folders/1Qo3BDvp7MVxlXBuUg7UnEbANh32WllXM?usp=drive_link" target="_blank" class="btn btn-aulas">
         aulas
       </a>
-      
+
       <button type="button" id="btn-galolingo-trigger" class="btn btn-galolingo">
         galolingo
       </button>
-      
+
       <a href="https://drive.google.com/drive/folders/1N5VtsKNa34d1w-plWL4827EBfFuLxlfV?usp=drive_link" target="_blank" class="btn btn-musicas">
         músicas
       </a>
     </nav>
 
-    <!-- Sub-menu Galolingo com cor #2F73A2 e texto em branco -->
     <nav id="galolingo-menu" class="buttons-container hidden">
       <a href="https://francaisavecdamiao.github.io/GALO_MON_ECOLE/" target="_blank" class="btn btn-ecole">
         mon école
@@ -74,6 +75,10 @@
       <a href="https://francaisavecdamiao.github.io/LES_LEGUMES/" target="_blank" class="btn btn-legumes">
         les légumes
       </a>
+
+      <button type="button" id="btn-back-trigger" class="btn btn-voltar">
+        ← voltar
+      </button>
     </nav>
   </main>
 
@@ -84,8 +89,9 @@
     const mainMenu = document.getElementById('main-menu');
     const galolingoMenu = document.getElementById('galolingo-menu');
     const galolingoTrigger = document.getElementById('btn-galolingo-trigger');
+    const backTrigger = document.getElementById('btn-back-trigger');
 
-    // Toca o áudio em qualquer elemento com a classe .btn
+    // Reproduz áudio no clique
     document.querySelectorAll('.btn').forEach(button => {
       button.addEventListener('click', () => {
         clickSound.currentTime = 0;
@@ -93,10 +99,16 @@
       });
     });
 
-    // Transição para a tela com os 3 botões ao clicar em galolingo
+    // Abrir o submenu Galolingo
     galolingoTrigger.addEventListener('click', () => {
       mainMenu.classList.add('hidden');
       galolingoMenu.classList.remove('hidden');
+    });
+
+    // Voltar para o menu principal
+    backTrigger.addEventListener('click', () => {
+      galolingoMenu.classList.add('hidden');
+      mainMenu.classList.remove('hidden');
     });
   </script>
 
