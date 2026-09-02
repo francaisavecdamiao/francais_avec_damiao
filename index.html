@@ -49,6 +49,7 @@
       <img src="logo_fad.png" alt="Logo Galolingo" class="logo">
     </header>
 
+    <!-- Menu Principal -->
     <nav id="main-menu" class="buttons-container">
       <a href="https://drive.google.com/drive/folders/1Qo3BDvp7MVxlXBuUg7UnEbANh32WllXM?usp=drive_link" target="_blank" class="btn btn-aulas">
         aulas
@@ -63,16 +64,17 @@
       </a>
     </nav>
 
+    <!-- Sub-menu Galolingo (abre na mesma aba) -->
     <nav id="galolingo-menu" class="buttons-container hidden">
-      <a href="https://francaisavecdamiao.github.io/GALO_MON_ECOLE/" target="_blank" class="btn btn-ecole">
+      <a href="https://francaisavecdamiao.github.io/GALO_MON_ECOLE/" class="btn btn-ecole">
         mon école
       </a>
 
-      <a href="https://francaisavecdamiao.github.io/LES_VACANCES/" target="_blank" class="btn btn-vacances">
+      <a href="https://francaisavecdamiao.github.io/LES_VACANCES/" class="btn btn-vacances">
         les vacances
       </a>
 
-      <a href="https://francaisavecdamiao.github.io/LES_LEGUMES/" target="_blank" class="btn btn-legumes">
+      <a href="https://francaisavecdamiao.github.io/LES_LEGUMES/" class="btn btn-legumes">
         les légumes
       </a>
 
@@ -91,15 +93,30 @@
     const galolingoTrigger = document.getElementById('btn-galolingo-trigger');
     const backTrigger = document.getElementById('btn-back-trigger');
 
-    // Reproduz áudio no clique
-    document.querySelectorAll('.btn').forEach(button => {
+    // Reproduz som de clique em botões normais (triggers e links externos que abrem em outra aba)
+    document.querySelectorAll('.btn:not(#galolingo-menu a.btn)').forEach(button => {
       button.addEventListener('click', () => {
         clickSound.currentTime = 0;
         clickSound.play();
       });
     });
 
-    // Abrir o submenu Galolingo
+    // Para os links do submenu, toca o som primeiro e depois redireciona na mesma aba
+    document.querySelectorAll('#galolingo-menu a.btn').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = link.getAttribute('href');
+
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        setTimeout(() => {
+          window.location.href = url;
+        }, 150);
+      });
+    });
+
+    // Transição para abrir o submenu Galolingo
     galolingoTrigger.addEventListener('click', () => {
       mainMenu.classList.add('hidden');
       galolingoMenu.classList.remove('hidden');
