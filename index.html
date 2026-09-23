@@ -1,4 +1,55 @@
-<!-- Menu Principal -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>galolingo</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Esconde elementos */
+    .hidden {
+      display: none !important;
+    }
+
+    /* Animação/dinâmica base para todos os botões */
+    .btn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    /* Estilo e cor personalizada para os botões do submenu Galolingo */
+    #galolingo-menu .btn {
+      background-color: #2F73A2;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* Estilo do botão de voltar */
+    .btn-voltar {
+      background-color: #6c757d;
+      color: #ffffff;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <header class="logo-container">
+      <img src="logo_fad.png" alt="Logo Galolingo" class="logo">
+    </header>
+
+    <!-- Menu Principal -->
     <nav id="main-menu" class="buttons-container">
       <a href="https://drive.google.com/drive/folders/1Qo3BDvp7MVxlXBuUg7UnEbANh32WllXM?usp=drive_link" target="_blank" class="btn btn-aulas">
         aulas
@@ -8,12 +59,83 @@
         galolingo
       </button>
 
+      <a href="https://carotte-seven.vercel.app/host.html" target="_blank" class="btn btn-carrote">
+        Carrote
+      </a>
+
       <a href="https://drive.google.com/drive/folders/1N5VtsKNa34d1w-plWL4827EBfFuLxlfV?usp=drive_link" target="_blank" class="btn btn-musicas">
         músicas
       </a>
-
-      <!-- AQUI ESTÁ O BOTÃO CARROTE -->
-      <a href="https://carotte-seven.vercel.app/host.html" target="_blank" class="btn btn-carrote">
-        carrote
-      </a>
     </nav>
+
+    <!-- Sub-menu Galolingo (abre na mesma aba) -->
+    <nav id="galolingo-menu" class="buttons-container hidden">
+      <a href="https://francaisavecdamiao.github.io/GALO_MON_ECOLE/" class="btn btn-ecole">
+        mon école
+      </a>
+
+      <a href="https://francaisavecdamiao.github.io/LES_VACANCES/" class="btn btn-vacances">
+        les vacances
+      </a>
+
+      <a href="https://francaisavecdamiao.github.io/LES_LEGUMES/" class="btn btn-legumes">
+        les légumes
+      </a>
+
+      <a href="https://francaisavecdamiao.github.io/prova_les_legumes/" class="btn btn-prova-legumes">
+        Prova Vegetais
+      </a>
+
+      <button type="button" id="btn-back-trigger" class="btn btn-voltar">
+        ← voltar
+      </button>
+    </nav>
+  </main>
+
+  <audio id="audio-click" src="click.mp3" preload="auto"></audio>
+
+  <script>
+    const clickSound = document.getElementById('audio-click');
+    const mainMenu = document.getElementById('main-menu');
+    const galolingoMenu = document.getElementById('galolingo-menu');
+    const galolingoTrigger = document.getElementById('btn-galolingo-trigger');
+    const backTrigger = document.getElementById('btn-back-trigger');
+
+    // Reproduz som de clique em botões normais (triggers e links externos que abrem em outra aba)
+    document.querySelectorAll('.btn:not(#galolingo-menu a.btn)').forEach(button => {
+      button.addEventListener('click', () => {
+        clickSound.currentTime = 0;
+        clickSound.play();
+      });
+    });
+
+    // Para os links do submenu, toca o som primeiro e depois redireciona na mesma aba
+    document.querySelectorAll('#galolingo-menu a.btn').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const url = link.getAttribute('href');
+
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        setTimeout(() => {
+          window.location.href = url;
+        }, 150);
+      });
+    });
+
+    // Transição para abrir o submenu Galolingo
+    galolingoTrigger.addEventListener('click', () => {
+      mainMenu.classList.add('hidden');
+      galolingoMenu.classList.remove('hidden');
+    });
+
+    // Voltar para o menu principal
+    backTrigger.addEventListener('click', () => {
+      galolingoMenu.classList.add('hidden');
+      mainMenu.classList.remove('hidden');
+    });
+  </script>
+
+</body>
+</html>
