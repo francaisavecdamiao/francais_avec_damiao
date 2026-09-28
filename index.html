@@ -106,7 +106,7 @@
       <a href="https://carotte-seven.vercel.app/" target="_blank" class="btn btn-carotte">
         Carotte
       </a>
-      <a href="https://francaisavecdamiao.github.io/dictionnaire/" target="_blank" class="btn btn-dictionnaire">
+      <a href="https://francaisavecdamiao.github.io/dictionnaire/" class="btn btn-dictionnaire">
         dictionnaire
       </a>
     </nav>
@@ -137,14 +137,14 @@
     const galolingoTrigger = document.getElementById('btn-galolingo-trigger');
     const backTrigger = document.getElementById('btn-back-trigger');
     // Reproduz som de clique em botões normais (triggers e links externos que abrem em outra aba)
-    document.querySelectorAll('.btn:not(#galolingo-menu a.btn)').forEach(button => {
+    document.querySelectorAll('.btn:not(#galolingo-menu a.btn):not(.btn-dictionnaire)').forEach(button => {
       button.addEventListener('click', () => {
         clickSound.currentTime = 0;
         clickSound.play();
       });
     });
-    // Para os links do submenu, toca o som primeiro e depois redireciona na mesma aba
-    document.querySelectorAll('#galolingo-menu a.btn').forEach(link => {
+    // Para os links que abrem na mesma aba (submenu e dictionnaire), toca o som primeiro e depois redireciona
+    document.querySelectorAll('#galolingo-menu a.btn, .btn-dictionnaire').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const url = link.getAttribute('href');
@@ -162,6 +162,11 @@
     });
     // Voltar para o menu principal
     backTrigger.addEventListener('click', () => {
+      galolingoMenu.classList.add('hidden');
+      mainMenu.classList.remove('hidden');
+    });
+    // Ao retornar a esta página pelo botão "voltar" do navegador, sempre mostra o menu inicial
+    window.addEventListener('pageshow', () => {
       galolingoMenu.classList.add('hidden');
       mainMenu.classList.remove('hidden');
     });
